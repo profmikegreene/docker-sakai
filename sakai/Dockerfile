@@ -5,9 +5,9 @@
 FROM buckett/sakai-tomcat
 
 # Copy all the files in
-COPY tomcat/components /opt/tomcat/components/
-COPY tomcat/lib /opt/tomcat/sakai-lib/
-COPY tomcat/webapps /opt/tomcat/webapps/
+COPY target/components /opt/tomcat/components/
+COPY target/lib /opt/tomcat/sakai-lib/
+COPY target/webapps /opt/tomcat/webapps/
 
 # We don't copy local.properties for production
 COPY  log4j.properties placeholder.properties sakai.quartz.properties /opt/tomcat/sakai/

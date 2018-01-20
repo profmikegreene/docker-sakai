@@ -1,2 +1,3 @@
-sakai/tomcat
+sakai/src
+sakai/target
 sakai/local.properties

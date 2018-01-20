@@ -13,7 +13,7 @@ WORKDIR /tmp
 
 # Create the group and user for Sakai
 RUN groupadd --gid 10000 sakai && \
-  useradd --uid 10000 --gid 10000 --system sakai 
+  useradd --uid 10000 --gid 10000 --system sakai
 
 # The 1024 bit root CAs are no longer in Debian (https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=812708)
 # and the cross signing isn't working in older versions of openssl
@@ -24,7 +24,7 @@ RUN update-ca-certificates
 RUN mkdir -p /opt/tomcat && \
   # We don't use the main mirror as otherwise it stops working once newer versions are released.
   # version we want
-  curl -s https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.28/bin/apache-tomcat-8.0.28.tar.gz | \
+  curl -s https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz | \
   tar zxf - --strip-components 1 -C /opt/tomcat && \
   cd /opt/tomcat && \
   rm -r webapps && \
@@ -77,7 +77,7 @@ ENV CATALINA_OPTS \
 # Set the properties for Sakai (sakai.home isn't necessary)
 -Dsakai.home=/opt/tomcat/sakai -Dsakai.security=/opt/tomcat/sakai \
 # Set the timezone as the docker container doesn't have this set
--Duser.timezone=Europe/London \
+-Duser.timezone=America/New_York \
 # Connect timeout (5 minutes)
 -Dsun.net.client.defaultConnectTimeout=300000 \
 # Read timeout (30 minutes)
